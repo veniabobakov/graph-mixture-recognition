@@ -49,6 +49,8 @@ class Mixture:
                         if node_index in v:
                             g = eval('self.' + k + f'({g}, {node_index}, {nodes})')  # generating edges for the node
                     continue
+                np.save(f, nx.edges(g))  # сохраняем numpy массив пары вершин
+                np.save(f, np.array([0]))
 
     def small_world(self, g: nx.Graph, node_index, nodes) -> nx.Graph:
         k = min(self.max_k, random.randint(2, self.max_k))
@@ -72,8 +74,6 @@ class Mixture:
         for neighbor in neighbors:
             g.add_edge(node_index, neighbor)
         return g
-
-
 
     @staticmethod
     def random(self, g: nx.Graph, node_index, nodes) -> nx.Graph:
